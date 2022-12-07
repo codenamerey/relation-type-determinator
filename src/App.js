@@ -1,5 +1,8 @@
+//import components
 import Header from "./components/Header";
 import Input from "./components/Input";
+import Output from "./components/Output";
+
 import 'normalize.css';
 
 
