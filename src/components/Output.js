@@ -1,5 +1,5 @@
 function Output() {
-    const sampleArray = [[1, 1], [2, 2], [2,3], [3, 1]];
+    const sampleArray = [[1, 1], [2, 2], [2,3], [3,2],[3, 1]];
 
     const checkReflexive = (set) => {
         let checkedElements = [];
@@ -22,12 +22,22 @@ function Output() {
         });
     }
 
-    const checkSymmetrical = () => {
+    const checkSymmetrical = (set) => {
         let checkedRelations = [];
-        return 
-    }
+        return set.every(relation => {
+            if(isChecked(relation, checkedRelations)) return;
+            checkedRelations.push(relation);
+            let relationReversed = (relation.slice()).reverse();
+            return hasSomeSymmetry(relationReversed, set);
+        });
 
-    console.log(checkReflexive(sampleArray));
+        function hasSomeSymmetry(element, relations) {
+            return relations.some(relation => {
+                return element[0] == relation[0] && element[1] == relation[1]
+            });
+        }
+    }
+    console.log(checkSymmetrical(sampleArray));
 
     return (
         <div className="output">
