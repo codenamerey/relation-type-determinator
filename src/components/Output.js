@@ -1,11 +1,8 @@
 function Output() {
-    const sampleArray = [[1, 1], [2, 2], [2,3], [3,2],[3, 1]];
+    const sampleArray = [[1, 1], [2, 2], [3,3],[1,3], [3,1]];
 
     const checkReflexive = (set) => {
-        let checkedElements = [];
         return set.every(relation => {
-             if(isChecked(relation[0], checkedElements)) return;
-             checkedElements.push(relation[0]);
              return hasSomeReflection(relation[0], set);
         });
 
@@ -16,17 +13,8 @@ function Output() {
         }
     }
 
-    const isChecked = (element, checkedElements) => {
-        return checkedElements.find(checkedElement => {
-            return element == checkedElement;
-        });
-    }
-
     const checkSymmetrical = (set) => {
-        let checkedRelations = [];
         return set.every(relation => {
-            if(isChecked(relation, checkedRelations)) return;
-            checkedRelations.push(relation);
             let relationReversed = (relation.slice()).reverse();
             return hasSomeSymmetry(relationReversed, set);
         });
@@ -37,7 +25,8 @@ function Output() {
             });
         }
     }
-    console.log(checkSymmetrical(sampleArray));
+    console.log('is reflexive? ', checkReflexive(sampleArray));
+    console.log('is symmetrical? ',checkSymmetrical(sampleArray));
 
     return (
         <div className="output">
