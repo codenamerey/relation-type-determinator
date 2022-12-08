@@ -1,6 +1,5 @@
-function Output() {
-    const sampleArray = [[1,2], [2,3], [3,4], [2,4], [1,3]];
-
+function Output(props) {
+    const { sampleArray } = props;
     const checkReflexive = (set) => {
         return set.every(relation => {
              return hasSomeReflection(relation[0], set);
@@ -28,24 +27,21 @@ function Output() {
 
     const checkTransitive = (set) => {
         let isTransitive = true;
-        set.map(relation => {
+        for (const relation of set) {
             if(!hasProbability(relation, set)) {
-                return;
+                continue;
             }
             let probableRelations = getPropableRelations(relation[1], set);
-            probableRelations.map(probableRelation => {
+            console.log(probableRelations);
+            for (const probableRelation of probableRelations) {
                 if(!hasSomeTransitive([relation[0], probableRelation[1]], set)) {
                     isTransitive = false;
-                    console.log(hasSomeTransitive([relation[0], probableRelation[1]], set));
-                    return;
                 }
-            })
-        });
+            }
+        }
 
         function hasSomeTransitive(probableRelation, set) {
-            console.log('probable relation is ',probableRelation);
             return set.some(relation => {
-                console.log('relation is ', relation);
                 return probableRelation[0] == relation[0] && probableRelation[1] == relation[1];
             })
         }
@@ -70,7 +66,9 @@ function Output() {
 
     return (
         <div className="output">
-
+            <p>Is it reflexive? <strong>{checkReflexive(sampleArray).toString()}</strong></p>
+            <p>Is it symmetric? <strong>{checkSymmetrical(sampleArray).toString()}</strong></p>
+            <p>Is it antisymmetric? <strong>{(!checkSymmetrical(sampleArray)).toString()}</strong></p>
         </div>
     )
 }
