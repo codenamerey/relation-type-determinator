@@ -1,0 +1,8 @@
+.textInputArea {
+    margin: 1rem;
+}
+
+textarea {
+    resize: none;
+    width: 90vw;
+}
