@@ -3,6 +3,14 @@
 }
 
 textarea {
+    border-radius: .5rem;
+    padding: 1rem;
     resize: none;
     width: 90vw;
+}
+
+@media only screen and (max-width: 750px) {
+    textarea {
+        width: 75vw;
+    }
 }
