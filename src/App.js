@@ -15,6 +15,7 @@ function App() {
 
   useEffect(
     () => {
+      document.title = 'Are U In A Relationship?';
       input = 
       document.getElementById('setInput').value;
     }, []
