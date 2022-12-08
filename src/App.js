@@ -11,6 +11,7 @@ import './App.css';
 function App() {
   let input;
   const [relations, setRelations] = useState([[1,2], [2,3], [3,4], [2,4], [1,3]]);
+  const [rawInput, setRawInput] = useState([[1,2], [2,3], [3,4], [2,4], [1,3]]);
 
   useEffect(
     () => {
@@ -21,6 +22,7 @@ function App() {
 
     function convertRelations() {
       let text = (document.getElementById('setInput')).value;
+      setRawInput(text);
       let newText = text.slice();
       let onlyNumbers = newText.replace(/\D/g, '');
       console.log(newText);
@@ -55,7 +57,7 @@ function App() {
         <Input></Input>
       </div>
       <button onClick={sendRelationsToOutput}>Check For Relations</button>
-      <Output sampleArray={relations}></Output>
+      <Output sampleArray={relations} rawInput={rawInput}></Output>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 function Output(props) {
-    const { sampleArray } = props;
+    const { sampleArray, rawInput } = props;
     const checkReflexive = (set) => {
         return set.every(relation => {
              return hasSomeReflection(relation[0], set);
@@ -66,6 +66,7 @@ function Output(props) {
 
     return (
         <div className="output">
+            <h3>Relation for set &#123;{rawInput}&#125;</h3>
             <p>Is it reflexive? <strong>{checkReflexive(sampleArray).toString()}</strong></p>
             <p>Is it symmetric? <strong>{checkSymmetrical(sampleArray).toString()}</strong></p>
             <p>Is it antisymmetric? <strong>{(!checkSymmetrical(sampleArray)).toString()}</strong></p>
