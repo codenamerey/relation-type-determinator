@@ -5,6 +5,7 @@ import Output from "./components/Output";
 
 import { useState, useEffect } from "react";
 import 'normalize.css';
+import './App.css';
 
 
 function App() {
@@ -49,7 +50,10 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
-      <Input></Input>
+
+      <div className="textInputArea">
+        <Input></Input>
+      </div>
       <button onClick={sendRelationsToOutput}>Check For Relations</button>
       <Output sampleArray={relations}></Output>
     </div>
