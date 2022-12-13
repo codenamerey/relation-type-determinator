@@ -2,7 +2,7 @@ function Output(props) {
     const { sampleArray, rawInput } = props;
     const checkReflexive = (set) => {
         return set.every(relation => {
-             return hasSomeReflection(relation[0], set);
+             return hasSomeReflection(relation[0], set) && hasSomeReflection(relation[1], set);
         });
 
         function hasSomeReflection(element, relations) {
