@@ -60,16 +60,39 @@ function Output(props) {
 
         return isTransitive;
     }
-    console.log('is reflexive? ', checkReflexive(sampleArray));
-    console.log('is symmetrical? ',checkSymmetrical(sampleArray));
-    console.log('is transitive? ',checkTransitive(sampleArray));
+
+
+    const checkAssymetrical = (set) => {
+        let isAssymetrical = false;
+
+        isAssymetrical = set.every((relation) => {
+            let relationReversed = (relation.slice()).reverse()
+            return checkAssymetry(relationReversed, set);
+        })
+
+        function checkAssymetry(element, set) {
+            if(set.includes(element)) {
+                if(!(element[0] == element[1])) {
+                    console.log(element, ': FALSE');
+                    return false;
+                }
+
+                return true;
+            } else {
+                console.log(element, ': TRUE');
+                return true;
+            }
+        }
+
+        return isAssymetrical;
+    }
 
     return (
         <div className="output">
             <h3>Relation for set &#123;{rawInput}&#125;</h3>
             <p>Is it reflexive? <strong>{checkReflexive(sampleArray).toString()}</strong></p>
             <p>Is it symmetric? <strong>{checkSymmetrical(sampleArray).toString()}</strong></p>
-            <p>Is it antisymmetric? <strong>{(!checkSymmetrical(sampleArray)).toString()}</strong></p>
+            <p>Is it antisymmetric? <strong>{(checkAssymetrical(sampleArray)).toString()}</strong></p>
         </div>
     )
 }
