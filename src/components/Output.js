@@ -71,6 +71,8 @@ function Output(props) {
         })
 
         function checkAssymetry(element, set) {
+            console.log('Set:', set);
+            console.log(set.includes(element));
             if(set.includes(element)) {
                 if(!(element[0] == element[1])) {
                     console.log(element, ': FALSE');
