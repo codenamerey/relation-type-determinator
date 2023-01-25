@@ -59,6 +59,15 @@ function App() {
       </div>
       <button onClick={sendRelationsToOutput}>Check For Relations</button>
       <Output sampleArray={relations} rawInput={rawInput}></Output>
+
+      <footer style={{
+        background: "black",
+        color: "white"
+      }}>
+        <p>Bug fixed: Antisymmetric works now! If you noticed a bug, you can <a style={{
+          color: "gold"
+        }} href="mailto:2solimanleeryan@gmail.com">email me to let me know</a>.</p>
+      </footer>
     </div>
   );
 }
