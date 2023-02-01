@@ -57,7 +57,6 @@ function Output(props) {
         })
 
         function checkAssymetry(element, set) {
-            console.log('Set:', set);
             const setHasRelation = set.some(relation => {
                 return isSameArray(relation, element);
             })
