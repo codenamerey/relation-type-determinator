@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/relation-type-determinator/static/css/main.52f8411a.css",
-    "main.js": "/relation-type-determinator/static/js/main.1a1f3b2c.js",
+    "main.js": "/relation-type-determinator/static/js/main.80c6ab22.js",
     "index.html": "/relation-type-determinator/index.html",
     "main.52f8411a.css.map": "/relation-type-determinator/static/css/main.52f8411a.css.map",
-    "main.1a1f3b2c.js.map": "/relation-type-determinator/static/js/main.1a1f3b2c.js.map"
+    "main.80c6ab22.js.map": "/relation-type-determinator/static/js/main.80c6ab22.js.map"
   },
   "entrypoints": [
     "static/css/main.52f8411a.css",
-    "static/js/main.1a1f3b2c.js"
+    "static/js/main.80c6ab22.js"
   ]
 }
