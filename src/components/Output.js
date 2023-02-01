@@ -25,40 +25,26 @@ function Output(props) {
         }
     }
 
-    const checkTransitive = (set) => {
-        let isTransitive = true;
-        for (const relation of set) {
-            if(!hasProbability(relation, set)) {
-                continue;
-            }
-            let probableRelations = getPropableRelations(relation[1], set);
-            console.log(probableRelations);
-            for (const probableRelation of probableRelations) {
-                if(!hasSomeTransitive([relation[0], probableRelation[1]], set)) {
-                    isTransitive = false;
-                }
-            }
-        }
-
-        function hasSomeTransitive(probableRelation, set) {
-            return set.some(relation => {
-                return probableRelation[0] == relation[0] && probableRelation[1] == relation[1];
-            })
-        }
-
-        function hasProbability(relation, set) {
-            return set.some(rel => {
-                return relation[1] == rel[0];
+    function checkTransitivity(set) {
+        return set.every(element => {
+            let first_item = element[0];
+            let second_item = element[1];
+            // Does the second item appear as first item in any array from set?
+            const contains_as_first = set.filter(element => {
+                return element[0] == second_item;
             });
-        }
-
-        function getPropableRelations(element, set) {
-            return set.filter(rel => {
-                return rel[0] == element;
+            // If (a, b) and (b, c), is (a, c)?
+            const items_must_exist = [];
+            contains_as_first.forEach(element => {
+                const item_must_exist = [first_item, element[1]];
+                items_must_exist.push(item_must_exist);
+            });
+            return items_must_exist.every(item => {
+                return set.some(element => {
+                    return isSameArray(element, item);
+                })
             })
-        }
-
-        return isTransitive;
+        })
     }
 
 
@@ -72,8 +58,10 @@ function Output(props) {
 
         function checkAssymetry(element, set) {
             console.log('Set:', set);
-            console.log(set.includes(element));
-            if(set.includes(element)) {
+            const setHasRelation = set.some(relation => {
+                return isSameArray(relation, element);
+            })
+            if(setHasRelation) {
                 if(!(element[0] == element[1])) {
                     console.log(element, ': FALSE');
                     return false;
@@ -89,12 +77,20 @@ function Output(props) {
         return isAssymetrical;
     }
 
+    function isSameArray(array1, array2) {
+        if(array1.length !== array2.length) return false;
+        return array1.every((element, index) => {
+            return element == array2[index];
+        })
+    }
+
     return (
         <div className="output">
             <h3>Relation for set &#123;{rawInput}&#125;</h3>
             <p>Is it reflexive? <strong>{checkReflexive(sampleArray).toString()}</strong></p>
             <p>Is it symmetric? <strong>{checkSymmetrical(sampleArray).toString()}</strong></p>
             <p>Is it antisymmetric? <strong>{(checkAssymetrical(sampleArray)).toString()}</strong></p>
+            <p>Is it transitive? <strong>{checkTransitivity(sampleArray).toString()}</strong></p>
         </div>
     )
 }
